@@ -8,32 +8,43 @@
     <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
 </head>
 <body>
-    <h1>Wine Quality Predictor</h1>
-    <form action="/predict" method="POST" id="prediction-form">
-        <div class="input-columns">
-            <div class="left-column">
-                {% for field, placeholder in [('fixed_acidity', 'Enter Fixed Acidity'), 
-                                              ('volatile_acidity', 'Enter Volatile Acidity'), 
-                                              ('citric_acid', 'Enter Citric Acid'), 
-                                              ('residual_sugar', 'Enter Residual Sugar'), 
-                                              ('chlorides', 'Enter Chlorides'), 
-                                              ('free_sulfur_dioxide', 'Enter Free Sulfur Dioxide')] %}
-                <label for="{{ field | replace('_', '-') }}">{{ field.replace('_', ' ').capitalize() }}:</label>
-                <input type="text" name="{{ field }}" placeholder="{{ placeholder }}" required><br>
-                {% endfor %}
-            </div>
-            <div class="right-column">
-                {% for field, placeholder in [('total_sulfur_dioxide', 'Enter Total Sulfur Dioxide'), 
-                                              ('density', 'Enter Density'), 
-                                              ('pH', 'Enter pH Level'), 
-                                              ('sulphates', 'Enter Sulphates'), 
-                                              ('alcohol', 'Enter Alcohol Level')] %}
-                <label for="{{ field | replace('_', '-') }}">{{ field.replace('_', ' ').capitalize() }}:</label>
-                <input type="text" name="{{ field }}" placeholder="{{ placeholder }}" required><br>
-                {% endfor %}
-            </div>
+    <div class="main-container">
+        <div class="form-header">
+            <h1>Wine Quality Predictor</h1>
+            <p>Fill in the details below to predict the wine quality.</p>
         </div>
-        <button type="submit">Predict</button>
-    </form>
+        <form action="/predict" method="POST" id="prediction-form">
+            <div class="input-columns">
+                <div class="left-column">
+                    {% for field, placeholder in [('fixed_acidity', 'Enter Fixed Acidity'), 
+                                                  ('volatile_acidity', 'Enter Volatile Acidity'), 
+                                                  ('citric_acid', 'Enter Citric Acid'), 
+                                                  ('residual_sugar', 'Enter Residual Sugar'), 
+                                                  ('chlorides', 'Enter Chlorides'), 
+                                                  ('free_sulfur_dioxide', 'Enter Free Sulfur Dioxide')] %}
+                    <label for="{{ field | replace('_', '-') }}">{{ field.replace('_', ' ').capitalize() }}:</label>
+                    <input type="text" name="{{ field }}" placeholder="{{ placeholder }}" required><br>
+                    {% endfor %}
+                </div>
+                <div class="right-column">
+                    {% for field, placeholder in [('total_sulfur_dioxide', 'Enter Total Sulfur Dioxide'), 
+                                                  ('density', 'Enter Density'), 
+                                                  ('pH', 'Enter pH Level'), 
+                                                  ('sulphates', 'Enter Sulphates'), 
+                                                  ('alcohol', 'Enter Alcohol Level')] %}
+                    <label for="{{ field | replace('_', '-') }}">{{ field.replace('_', ' ').capitalize() }}:</label>
+                    <input type="text" name="{{ field }}" placeholder="{{ placeholder }}" required><br>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-footer">
+                <label class="checkbox-container">
+                    <input type="checkbox" name="terms" required>
+                    I agree to the Terms of Service and Privacy Policy.
+                </label>
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
